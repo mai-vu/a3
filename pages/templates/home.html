@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rate My Car</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+
+      <!-- This form references the homePost route. -->
+    <form action="{% url 'evalCar' %}" method="post">
+    {% csrf_token %}
+
+    <h3>Evaluate Your Car: </h3>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="buying">Buying Price</label>
+            <select class="form-control" id="buying" name="buying">
+              <option value="0">Very High ($40,000+)</option>
+              <option value="1">High ($30,000 - $40,000)</option>
+              <option value="2">Medium ($10,000 - $30,000)</option>
+              <option value="3">Low (Under $10,000)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="maint">Maintenance Price</label>
+            <select class="form-control" id="maint" name="maint">
+              <option value="0">Very High ($2,000+ annually)</option>
+              <option value="1">High ($1,000 - $2,000 annually)</option>
+              <option value="2">Medium ($500 - $1,000 annually)</option>
+              <option value="3">Low (Under $500 annually)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="safety">Safety Level</label>
+            <select class="form-control" id="safety" name="safety">
+              <option value="0">Low</option>
+              <option value="1">Medium</option>
+              <option value="2">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lug_boot">Trunk Size</label>
+            <select class="form-control" id="lug_boot" name="lug_boot">
+              <option value="0">Small (Less than 10 cubic feet)</option>
+              <option value="1">Medium (10 - 20 cubic feet)</option>
+              <option value="2">Big (More than 20 cubic feet)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="persons">Number of Passengers</label>
+            <select class="form-control" id="persons" name="persons">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5+</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!—Submit button is also contained in the form -->
+    <div class="input-group mb-3">
+        <button type="submit" class="btn btn-dark form-control">Evaluate Now</button>
+    </div>
+    </form>
+    <!-- End of form. -->
+
+    <!-- This error will notify the user if there are issues with the POST request -->
+    {% if errorMessage %}<p><strong>{{errorMessage}}</strong></p>{% endif %}
+
+    {% endblock content %}
+</body>
+</html>
