@@ -1,7 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
-from django.http import Http404
-from django.urls import reverse
-from django.views.generic import TemplateView
+from django.shortcuts import render
 from keras.models import load_model
 import pickle
 import pandas as pd
